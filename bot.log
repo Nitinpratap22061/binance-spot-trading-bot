@@ -1,0 +1,156 @@
+2025-07-08 18:38:25,813 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:38:25,813 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:38:49,144 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:38:49,144 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:38:55,619 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:38:55,619 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:38:55,725 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:38:55,725 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:38:56,201 - INFO - \U0001f4e6 Market Order placed: {'symbol': 'BTCUSDT', 'orderId': 2883527, 'orderListId': -1, 'clientOrderId': 'gCguQOFHo1ck8OEDWvbcXF', 'transactTime': 1751980141017, 'price': '0.00000000', 'origQty': '0.00100000', 'executedQty': '0.00100000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '108.88352000', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1751980141017, 'fills': [{'price': '108883.52000000', 'qty': '0.00100000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 399617}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+2025-07-08 18:39:17,173 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:39:17,173 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:39:17,349 - INFO - \U0001f4b0 Balance fetched successfully.
+2025-07-08 18:44:02,461 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:44:02,461 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:44:11,650 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:44:11,650 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:44:16,885 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:44:16,885 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:44:17,333 - ERROR - \u274c Error fetching open orders: APIError(code=-1021): Timestamp for this request is outside of the recvWindow.
+2025-07-08 18:44:25,243 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:44:25,243 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:44:29,098 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:44:29,098 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:44:29,548 - ERROR - \u274c Error fetching open orders: APIError(code=-1021): Timestamp for this request is outside of the recvWindow.
+2025-07-08 18:44:39,886 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:44:39,886 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:44:50,634 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:44:50,635 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:44:50,635 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:44:50,635 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:44:51,139 - ERROR - \u274c Error fetching open orders: APIError(code=-1021): Timestamp for this request is outside of the recvWindow.
+2025-07-08 18:44:56,373 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:44:56,373 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:45:05,281 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:45:05,281 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:47:12,665 - INFO - \U0001f4c8 Symbols & prices fetched.
+2025-07-08 18:49:42,206 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:49:42,206 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:50:33,928 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:50:33,928 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:50:34,031 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:50:34,032 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:50:34,512 - ERROR - \u274c Error fetching open orders: APIError(code=-1021): Timestamp for this request is outside of the recvWindow.
+2025-07-08 18:55:19,161 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:55:19,162 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:55:19,214 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:55:19,230 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:55:26,636 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:55:26,637 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:55:52,131 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:55:52,132 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:55:52,194 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:55:52,194 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:55:52,370 - INFO - \U0001f4cb Open orders fetched.
+2025-07-08 18:56:37,214 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:56:37,215 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:56:37,266 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:56:37,266 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:56:37,829 - ERROR - \u274c Error fetching open orders: APIError(code=-1121): Invalid symbol.
+2025-07-08 18:58:48,942 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:58:48,943 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:58:48,981 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:58:48,981 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 18:58:49,156 - INFO - \U0001f4cb Open orders fetched.
+2025-07-08 18:59:58,090 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 18:59:58,090 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:00:04,096 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:00:04,096 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:00:06,583 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:00:06,583 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:00:22,476 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:00:22,476 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:00:34,384 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:00:34,384 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:00:54,138 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:00:54,138 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:00:54,500 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:00:54,500 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:00:54,671 - ERROR - \u274c Limit order error: APIError(code=-1013): Filter failure: PERCENT_PRICE_BY_SIDE
+2025-07-08 19:05:50,689 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:05:50,689 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:05:50,693 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:05:50,693 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:07:08,679 - INFO - \U0001f4c8 Symbols & prices fetched.
+2025-07-08 19:07:55,058 - INFO - \U0001f4c8 Symbols & prices fetched.
+2025-07-08 19:08:22,834 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:08:22,834 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:08:22,865 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:08:22,865 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:09:36,253 - INFO - \U0001f4c8 Symbols & prices fetched.
+2025-07-08 19:09:36,424 - INFO - \U0001f4e6 Market Order placed: {'symbol': 'BTCUSDT', 'orderId': 2898745, 'orderListId': -1, 'clientOrderId': 'dJLa8nMHYN7YVg1Sw3n0jq', 'transactTime': 1751981981229, 'price': '0.00000000', 'origQty': '0.00100000', 'executedQty': '0.00100000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '108.64059000', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1751981981229, 'fills': [{'price': '108640.59000000', 'qty': '0.00100000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 402100}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+2025-07-08 19:09:37,811 - INFO - \U0001f4c8 Symbols & prices fetched.
+2025-07-08 19:09:57,349 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:09:57,349 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:11:59,688 - INFO - \U0001f4c8 Symbols & prices fetched.
+2025-07-08 19:12:04,708 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:12:04,708 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:12:05,177 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:12:05,177 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:13:22,881 - INFO - \U0001f4c8 Symbols & prices fetched.
+2025-07-08 19:14:07,382 - INFO - \U0001f4c8 Symbols & prices fetched.
+2025-07-08 19:14:07,860 - INFO - \U0001f4cb Open orders fetched.
+2025-07-08 19:15:17,354 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:15:17,354 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:15:17,388 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:15:17,389 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:15:18,004 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:15:18,087 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:15:38,274 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:15:38,274 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:15:38,947 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:15:44,917 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:15:44,917 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:15:46,162 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:16:04,211 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:16:04,211 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:16:04,327 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:16:04,327 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:16:05,131 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:16:05,279 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:16:05,752 - ERROR - \u26a0\ufe0f Price adjusted to 108366.87 to meet Binance limits.
+2025-07-08 19:16:05,919 - INFO - \U0001f4e6 Limit Order placed: {'symbol': 'BTCUSDT', 'orderId': 2902084, 'orderListId': -1, 'clientOrderId': 'x3tCWaIbLJ7Gn08ZzJ78yI', 'transactTime': 1751982370717, 'price': '108366.87000000', 'origQty': '0.00100000', 'executedQty': '0.00000000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '0.00000000', 'status': 'NEW', 'timeInForce': 'GTC', 'type': 'LIMIT', 'side': 'BUY', 'workingTime': 1751982370717, 'fills': [], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+2025-07-08 19:16:18,366 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:16:18,367 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:16:19,343 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:16:23,531 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:16:23,531 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:16:24,186 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:16:28,302 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:16:28,302 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:16:28,978 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:16:29,160 - INFO - \U0001f4cb Open orders fetched.
+2025-07-08 19:16:40,066 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:16:40,066 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:16:41,008 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:16:41,184 - INFO - \U0001f4b0 Balance fetched.
+2025-07-08 19:16:46,976 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:16:46,977 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:16:47,627 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:17:13,602 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:17:13,602 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:17:14,011 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:17:14,012 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:17:14,269 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:17:14,939 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:17:15,110 - INFO - \U0001f5d1 Order 2902084 cancelled.
+2025-07-08 19:25:01,286 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:25:01,286 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:25:01,962 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:25:06,245 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:25:06,245 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:25:07,475 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:25:09,691 - INFO - \U0001f552 Timestamp synced with Binance server.
+2025-07-08 19:25:09,691 - INFO - \u2705 Bot initialized successfully.
+2025-07-08 19:25:10,630 - INFO - \U0001f4c8 Symbols & prices fetched (optimized).
+2025-07-08 19:25:10,802 - INFO - \U0001f4cb Open orders fetched.
