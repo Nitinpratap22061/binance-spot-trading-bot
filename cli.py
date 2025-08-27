@@ -1,8 +1,15 @@
 # cli.py
 from bot import BasicBot
-from config import API_KEY, API_SECRET
 from utils import *
 import time
+import os
+from dotenv import load_dotenv
+
+# 🔐 Load API key/secret from .env
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+API_SECRET = os.getenv("API_SECRET")
+
 
 def main_menu():
     print("\n📊 Choose an option:")
@@ -12,6 +19,7 @@ def main_menu():
     print("4. 🗑 Cancel an Order")
     print("5. 📈 List Symbols with Prices")
     print("6. 🚪 Exit")
+
 
 def get_order_input():
     symbol = input("🔸 Enter Symbol (e.g., BTCUSDT): ").strip().upper()
@@ -32,14 +40,17 @@ def get_order_input():
     print(f"▶ Side: {side}")
     print(f"▶ Type: {order_type}")
     print(f"▶ Quantity: {quantity}")
-    if price: print(f"▶ Limit Price: {price}")
-    if stop_price: print(f"▶ Stop Price: {stop_price}")
+    if price:
+        print(f"▶ Limit Price: {price}")
+    if stop_price:
+        print(f"▶ Stop Price: {stop_price}")
 
     confirm = input("✅ Proceed? (y/n): ").strip().lower()
     if confirm == 'y':
         return symbol, side, order_type, quantity, price, stop_price
     else:
         return None, None, None, None, None, None
+
 
 def main():
     bot = BasicBot(API_KEY, API_SECRET)
@@ -103,6 +114,7 @@ def main():
             print("❌ Invalid choice, try again!")
 
         time.sleep(1)
+
 
 if __name__ == "__main__":
     main()
