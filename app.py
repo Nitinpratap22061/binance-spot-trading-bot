@@ -1,7 +1,13 @@
 # app.py
 import streamlit as st
 from bot import BasicBot
-from config import API_KEY, API_SECRET
+import os
+from dotenv import load_dotenv
+
+# 🔐 Load environment variables
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+API_SECRET = os.getenv("API_SECRET")
 
 # 🔐 Initialize bot
 bot = BasicBot(API_KEY, API_SECRET)
