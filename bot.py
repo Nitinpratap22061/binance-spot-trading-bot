@@ -10,11 +10,13 @@ from dotenv import load_dotenv
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 API_SECRET = os.getenv("API_SECRET")
+USE_TESTNET = os.getenv("USE_TESTNET", "false").lower() == "true"
 
 
 class BasicBot:
     def __init__(self, api_key=API_KEY, api_secret=API_SECRET):
-        self.client = Client(api_key, api_secret)
+        # ✅ Choose between Mainnet and Testnet
+        self.client = Client(api_key, api_secret, testnet=USE_TESTNET)
         self.client.API_URL = BASE_URL + "/api"
 
         try:
@@ -25,7 +27,8 @@ class BasicBot:
         except Exception as e:
             log(f"❌ Error syncing timestamp: {str(e)}", "error")
 
-        log("✅ Bot initialized successfully.")
+        mode = "Testnet" if USE_TESTNET else "Mainnet"
+        log(f"✅ Bot initialized successfully ({mode}).")
         self._symbol_cache = None
         self._price_map = None
 
