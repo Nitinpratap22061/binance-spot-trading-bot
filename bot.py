@@ -1,8 +1,16 @@
 # bot.py
 from binance.client import Client
-from config import API_KEY, API_SECRET, BASE_URL
+from config import BASE_URL
 from logger import log
 import time
+import os
+from dotenv import load_dotenv
+
+# 🔐 Load API key/secret from .env
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+API_SECRET = os.getenv("API_SECRET")
+
 
 class BasicBot:
     def __init__(self, api_key=API_KEY, api_secret=API_SECRET):
