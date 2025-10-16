@@ -1,153 +1,168 @@
-# bot.py
 from binance.client import Client
-from config import BASE_URL
-from logger import log
 import time
 import os
 from dotenv import load_dotenv
+from logger import log
 
-# 🔐 Load API key/secret from .env
+# 🔐 Load environment variables
 load_dotenv()
+
 API_KEY = os.getenv("API_KEY")
 API_SECRET = os.getenv("API_SECRET")
 USE_TESTNET = os.getenv("USE_TESTNET", "false").lower() == "true"
 
+# ✅ Define BASE_URL dynamically based on USE_TESTNET
+BASE_URL = "https://testnet.binance.vision" if USE_TESTNET else "https://api.binance.com"
+
 
 class BasicBot:
     def __init__(self, api_key=API_KEY, api_secret=API_SECRET):
-        # ✅ Choose between Mainnet and Testnet
-        self.client = Client(api_key, api_secret, testnet=USE_TESTNET)
-        self.client.API_URL = BASE_URL + "/api"
-
+        """Initialize Binance client and sync timestamp."""
         try:
-            server_time = self.client.get_server_time()['serverTime']
+            self.client = Client(api_key, api_secret, testnet=USE_TESTNET)
+            self.client.API_URL = BASE_URL + "/api"
+
+            # ⏱ Sync timestamp
+            server_time = self.client.get_server_time()["serverTime"]
             local_time = int(time.time() * 1000)
             self.client._timestamp_offset = server_time - local_time
             log("🕒 Timestamp synced with Binance server.")
         except Exception as e:
-            log(f"❌ Error syncing timestamp: {str(e)}", "error")
+            log(f"❌ Error initializing client: {e}", "error")
 
         mode = "Testnet" if USE_TESTNET else "Mainnet"
         log(f"✅ Bot initialized successfully ({mode}).")
+
         self._symbol_cache = None
         self._price_map = None
 
-    # ✅ Market Order
+    # 💹 MARKET ORDER
     def place_market_order(self, symbol, side, quantity):
         try:
             order = self.client.create_order(
                 symbol=symbol.upper(),
                 side=side.upper(),
-                type='MARKET',
+                type="MARKET",
                 quantity=quantity,
                 recvWindow=6000
             )
             log(f"📦 Market Order placed: {order}")
             return order
         except Exception as e:
-            log(f"❌ Market order error: {str(e)}", "error")
+            log(f"❌ Market order error: {e}", "error")
             return None
 
-    # ✅ Limit Order with PERCENT_PRICE_BY_SIDE safety
+    # 💰 LIMIT ORDER
     def place_limit_order(self, symbol, side, quantity, price):
         try:
             ticker = self.client.get_symbol_ticker(symbol=symbol.upper())
-            current_price = float(ticker['price'])
+            current_price = float(ticker["price"])
 
-            # Binance constraint workaround: adjust price within ±5%
+            # ✅ Adjust price if out of Binance’s ±5% range
             upper = current_price * 1.05
             lower = current_price * 0.95
             if not (lower <= price <= upper):
-                price = round(current_price * (0.995 if side.upper() == 'BUY' else 1.005), 2)
+                price = round(
+                    current_price * (0.995 if side.upper() == "BUY" else 1.005), 2
+                )
                 log(f"⚠️ Price adjusted to {price} to meet Binance limits.", "warning")
 
             order = self.client.create_order(
                 symbol=symbol.upper(),
                 side=side.upper(),
-                type='LIMIT',
+                type="LIMIT",
                 quantity=quantity,
                 price=str(price),
-                timeInForce='GTC',
+                timeInForce="GTC",
                 recvWindow=6000
             )
             log(f"📦 Limit Order placed: {order}")
             return order
         except Exception as e:
-            log(f"❌ Limit order error: {str(e)}", "error")
+            log(f"❌ Limit order error: {e}", "error")
             return None
 
-    # ✅ Stop-Market Order
+    # 🚨 STOP-MARKET ORDER
     def place_stop_market_order(self, symbol, side, quantity, stop_price):
         try:
             order = self.client.create_order(
                 symbol=symbol.upper(),
                 side=side.upper(),
-                type='STOP_LOSS',
+                type="STOP_LOSS_MARKET",
                 stopPrice=str(stop_price),
                 quantity=quantity,
-                timeInForce='GTC',
                 recvWindow=6000
             )
             log(f"📦 Stop-Market Order placed: {order}")
             return order
         except Exception as e:
-            log(f"❌ Stop-Market order error: {str(e)}", "error")
+            log(f"❌ Stop-Market order error: {e}", "error")
             return None
 
-    # ✅ Get Balance (non-zero)
+    # 💼 GET BALANCE
     def get_balance(self):
         try:
             info = self.client.get_account(recvWindow=6000)
-            balances = info['balances']
-            non_zero = [b for b in balances if float(b['free']) > 0 or float(b['locked']) > 0]
-            log("💰 Balance fetched.")
+            balances = info["balances"]
+            non_zero = [
+                b for b in balances
+                if float(b["free"]) > 0 or float(b["locked"]) > 0
+            ]
+            log("💰 Balance fetched successfully.")
             return non_zero
         except Exception as e:
-            log(f"❌ Error fetching balance: {str(e)}", "error")
+            log(f"❌ Error fetching balance: {e}", "error")
             return []
 
-    # ✅ Get Open Orders
+    # 📋 GET OPEN ORDERS
     def get_open_orders(self, symbol=None):
         try:
-            symbol = symbol.upper() if symbol else None
-            orders = self.client.get_open_orders(symbol=symbol, recvWindow=6000) if symbol else self.client.get_open_orders(recvWindow=6000)
+            if symbol:
+                symbol = symbol.upper()
+                orders = self.client.get_open_orders(symbol=symbol, recvWindow=6000)
+            else:
+                orders = self.client.get_open_orders(recvWindow=6000)
             log("📋 Open orders fetched.")
             return orders
         except Exception as e:
-            log(f"❌ Error fetching open orders: {str(e)}", "error")
+            log(f"❌ Error fetching open orders: {e}", "error")
             return []
 
-    # ✅ Cancel Order
+    # 🗑 CANCEL ORDER
     def cancel_order(self, symbol, order_id):
         try:
-            result = self.client.cancel_order(symbol=symbol.upper(), orderId=order_id, recvWindow=6000)
-            log(f"🗑 Order {order_id} cancelled.")
+            result = self.client.cancel_order(
+                symbol=symbol.upper(), orderId=order_id, recvWindow=6000
+            )
+            log(f"🗑 Order {order_id} cancelled successfully.")
             return result
         except Exception as e:
-            log(f"❌ Cancel order error: {str(e)}", "error")
+            log(f"❌ Cancel order error: {e}", "error")
             return None
 
-    # ✅ Optimized: Get all symbols with prices (cached)
+    # 📈 GET SYMBOLS & PRICES (cached)
     def get_all_symbols_with_prices(self):
         try:
             if not self._symbol_cache:
                 exchange_info = self.client.get_exchange_info()
                 self._symbol_cache = [
-                    s['symbol'] for s in exchange_info['symbols']
-                    if s['status'] == 'TRADING' and s['quoteAsset'] == 'USDT'
+                    s["symbol"]
+                    for s in exchange_info["symbols"]
+                    if s["status"] == "TRADING" and s["quoteAsset"] == "USDT"
                 ]
 
             if not self._price_map:
                 tickers = self.client.get_all_tickers()
-                self._price_map = {item['symbol']: item['price'] for item in tickers}
+                self._price_map = {t["symbol"]: t["price"] for t in tickers}
 
             prices = {
                 s: self._price_map[s]
-                for s in self._symbol_cache if s in self._price_map
+                for s in self._symbol_cache
+                if s in self._price_map
             }
 
-            log("📈 Symbols & prices fetched (optimized).")
+            log("📈 Symbols & prices fetched successfully.")
             return prices
         except Exception as e:
-            log(f"❌ Error fetching symbols/prices: {str(e)}", "error")
+            log(f"❌ Error fetching symbols/prices: {e}", "error")
             return {}
