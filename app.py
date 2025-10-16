@@ -19,7 +19,7 @@ USE_TESTNET = os.getenv("USE_TESTNET", "true").lower() == "true"
 # Initialize the bot
 # ---------------------------
 try:
-    bot = BasicBot(API_KEY, API_SECRET, use_testnet=USE_TESTNET)
+    bot = BasicBot(API_KEY, API_SECRET)
     symbol_prices = bot.get_all_symbols_with_prices()
     symbols = list(symbol_prices.keys())
 except Exception as e:
