@@ -4,25 +4,25 @@ from bot import BasicBot
 import os
 from dotenv import load_dotenv
 
-# 🔐 Load environment variables
+#  Load environment variables
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 API_SECRET = os.getenv("API_SECRET")
 
-# 🔐 Initialize bot
+# Initialize bot
 bot = BasicBot(API_KEY, API_SECRET)
 
-# 📈 Fetch symbols + prices once
+#Fetch symbols + prices once
 symbol_prices = bot.get_all_symbols_with_prices()
 symbols = list(symbol_prices.keys())
 
-# 🧠 App Title
-st.set_page_config(page_title="Binance Spot Bot", page_icon="📈")
-st.title("📈 Binance Spot Trading Bot (Testnet)")
-st.markdown("🚀 Place trades, view balances & manage orders on Binance Testnet.")
+#  App Title
+st.set_page_config(page_title="Binance Spot Bot", page_icon="")
+st.title(" Binance Spot Trading Bot (Testnet)")
+st.markdown(" Place trades, view balances & manage orders on Binance Testnet.")
 
-# 📋 Sidebar Menu
-menu = st.sidebar.selectbox("📂 Select Action", [
+# Sidebar Menu
+menu = st.sidebar.selectbox(" Select Action", [
     "💹 Place Order",
     "💰 Check Balance",
     "📋 Open Orders",
