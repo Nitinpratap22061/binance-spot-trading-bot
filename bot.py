@@ -1,4 +1,5 @@
 from binance.client import Client
+from binance.exceptions import BinanceAPIException
 import time
 import os
 from dotenv import load_dotenv
@@ -7,31 +8,39 @@ from logger import log
 # 🔐 Load environment variables
 load_dotenv()
 
+# --- ENVIRONMENT VARIABLES ---
 API_KEY = os.getenv("API_KEY")
 API_SECRET = os.getenv("API_SECRET")
 USE_TESTNET = os.getenv("USE_TESTNET", "false").lower() == "true"
 
-# ✅ Define BASE_URL dynamically based on USE_TESTNET
+# --- BASE URL (Testnet vs Mainnet) ---
 BASE_URL = "https://testnet.binance.vision" if USE_TESTNET else "https://api.binance.com"
 
 
 class BasicBot:
     def __init__(self, api_key=API_KEY, api_secret=API_SECRET):
-        """Initialize Binance client and sync timestamp."""
+        """Initialize Binance client safely with timestamp sync."""
         try:
-            self.client = Client(api_key, api_secret, testnet=USE_TESTNET)
+            if not api_key or not api_secret:
+                raise ValueError("API_KEY or API_SECRET is missing in environment variables.")
+
+            self.client = Client(api_key, api_secret)
             self.client.API_URL = BASE_URL + "/api"
 
             # ⏱ Sync timestamp
-            server_time = self.client.get_server_time()["serverTime"]
-            local_time = int(time.time() * 1000)
-            self.client._timestamp_offset = server_time - local_time
-            log("🕒 Timestamp synced with Binance server.")
-        except Exception as e:
-            log(f"❌ Error initializing client: {e}", "error")
+            try:
+                server_time = self.client.get_server_time()["serverTime"]
+                local_time = int(time.time() * 1000)
+                self.client._timestamp_offset = server_time - local_time
+                log("🕒 Timestamp synced with Binance server.")
+            except Exception as e:
+                log(f"⚠️ Could not sync timestamp: {e}", "warning")
 
-        mode = "Testnet" if USE_TESTNET else "Mainnet"
-        log(f"✅ Bot initialized successfully ({mode}).")
+            mode = "Testnet" if USE_TESTNET else "Mainnet"
+            log(f"✅ Bot initialized successfully ({mode}).")
+
+        except Exception as e:
+            log(f"❌ Error initializing Binance client: {e}", "error")
 
         self._symbol_cache = None
         self._price_map = None
@@ -48,6 +57,9 @@ class BasicBot:
             )
             log(f"📦 Market Order placed: {order}")
             return order
+        except BinanceAPIException as e:
+            log(f"❌ Binance API Error: {e.message}", "error")
+            return None
         except Exception as e:
             log(f"❌ Market order error: {e}", "error")
             return None
@@ -78,6 +90,9 @@ class BasicBot:
             )
             log(f"📦 Limit Order placed: {order}")
             return order
+        except BinanceAPIException as e:
+            log(f"❌ Binance API Error: {e.message}", "error")
+            return None
         except Exception as e:
             log(f"❌ Limit order error: {e}", "error")
             return None
@@ -95,6 +110,9 @@ class BasicBot:
             )
             log(f"📦 Stop-Market Order placed: {order}")
             return order
+        except BinanceAPIException as e:
+            log(f"❌ Binance API Error: {e.message}", "error")
+            return None
         except Exception as e:
             log(f"❌ Stop-Market order error: {e}", "error")
             return None
@@ -103,13 +121,16 @@ class BasicBot:
     def get_balance(self):
         try:
             info = self.client.get_account(recvWindow=6000)
-            balances = info["balances"]
+            balances = info.get("balances", [])
             non_zero = [
                 b for b in balances
                 if float(b["free"]) > 0 or float(b["locked"]) > 0
             ]
             log("💰 Balance fetched successfully.")
             return non_zero
+        except BinanceAPIException as e:
+            log(f"❌ Binance API Error: {e.message}", "error")
+            return []
         except Exception as e:
             log(f"❌ Error fetching balance: {e}", "error")
             return []
@@ -117,13 +138,13 @@ class BasicBot:
     # 📋 GET OPEN ORDERS
     def get_open_orders(self, symbol=None):
         try:
-            if symbol:
-                symbol = symbol.upper()
-                orders = self.client.get_open_orders(symbol=symbol, recvWindow=6000)
-            else:
-                orders = self.client.get_open_orders(recvWindow=6000)
+            orders = (self.client.get_open_orders(symbol=symbol.upper(), recvWindow=6000)
+                      if symbol else self.client.get_open_orders(recvWindow=6000))
             log("📋 Open orders fetched.")
             return orders
+        except BinanceAPIException as e:
+            log(f"❌ Binance API Error: {e.message}", "error")
+            return []
         except Exception as e:
             log(f"❌ Error fetching open orders: {e}", "error")
             return []
@@ -136,11 +157,14 @@ class BasicBot:
             )
             log(f"🗑 Order {order_id} cancelled successfully.")
             return result
+        except BinanceAPIException as e:
+            log(f"❌ Binance API Error: {e.message}", "error")
+            return None
         except Exception as e:
             log(f"❌ Cancel order error: {e}", "error")
             return None
 
-    # 📈 GET SYMBOLS & PRICES (cached)
+    # 📈 GET SYMBOLS & PRICES
     def get_all_symbols_with_prices(self):
         try:
             if not self._symbol_cache:
@@ -151,18 +175,14 @@ class BasicBot:
                     if s["status"] == "TRADING" and s["quoteAsset"] == "USDT"
                 ]
 
-            if not self._price_map:
-                tickers = self.client.get_all_tickers()
-                self._price_map = {t["symbol"]: t["price"] for t in tickers}
-
-            prices = {
-                s: self._price_map[s]
-                for s in self._symbol_cache
-                if s in self._price_map
-            }
+            tickers = self.client.get_all_tickers()
+            prices = {t["symbol"]: t["price"] for t in tickers if t["symbol"] in self._symbol_cache}
 
             log("📈 Symbols & prices fetched successfully.")
             return prices
+        except BinanceAPIException as e:
+            log(f"❌ Binance API Error: {e.message}", "error")
+            return {}
         except Exception as e:
             log(f"❌ Error fetching symbols/prices: {e}", "error")
             return {}
